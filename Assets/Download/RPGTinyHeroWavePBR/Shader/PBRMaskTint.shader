@@ -6,7 +6,7 @@ Shader "PBRMaskTint"
 	{
 		_Albedo("Albedo", 2D) = "white" {}
 		_SAM("SAM", 2D) = "white" {}
-		_Emission("Emission", 2D) = "white" {}
+		_EmissionMap("Emission", 2D) = "white" {}
 		_Mask01("Mask01", 2D) = "white" {}
 		_Mask02("Mask02", 2D) = "white" {}
 		_Mask03("Mask03", 2D) = "white" {}
@@ -71,8 +71,8 @@ Shader "PBRMaskTint"
 		uniform float _Color08Power;
 		uniform float4 _Color09_SKIN;
 		uniform float _Color09Power;
-		uniform sampler2D _Emission;
-		uniform float4 _Emission_ST;
+		uniform sampler2D _EmissionMap;
+		uniform float4 _EmissionMap_ST;
 		uniform float4 _EmissionPower;
 		uniform sampler2D _SAM;
 		uniform float4 _SAM_ST;
@@ -100,8 +100,8 @@ Shader "PBRMaskTint"
 			float4 blendOpDest22 = ( ( min( temp_cast_0 , _Color01 ) * _Color01Power ) + ( min( temp_cast_1 , _Color02 ) * _Color02Power ) + ( min( temp_cast_2 , _Color03 ) * _Color03Power ) + ( min( temp_cast_3 , _Color04 ) * _Color04Power ) + ( min( temp_cast_4 , _Color05 ) * _Color05Power ) + ( min( temp_cast_5 , _Color06 ) * _Color06Power ) + ( min( temp_cast_6 , _Color07 ) * _Color07Power ) + ( min( temp_cast_7 , _Color08 ) * _Color08Power ) + ( min( temp_cast_8 , _Color09_SKIN ) * _Color09Power ) );
 			float4 lerpResult4 = lerp( tex2DNode16 , ( saturate( ( blendOpSrc22 * blendOpDest22 ) )) , ( tex2DNode13.r + tex2DNode13.g + tex2DNode13.b + tex2DNode41.r + tex2DNode41.g + tex2DNode41.b + tex2DNode58.r + tex2DNode58.g + tex2DNode58.b ));
 			o.Albedo = lerpResult4.rgb;
-			float2 uv_Emission = i.uv_texcoord * _Emission_ST.xy + _Emission_ST.zw;
-			o.Emission = ( tex2D( _Emission, uv_Emission ) * _EmissionPower ).rgb;
+			float2 uv_EmissionMap = i.uv_texcoord * _EmissionMap_ST.xy + _EmissionMap_ST.zw;
+			o.Emission = ( tex2D( _EmissionMap, uv_EmissionMap ) * _EmissionPower ).rgb;
 			float2 uv_SAM = i.uv_texcoord * _SAM_ST.xy + _SAM_ST.zw;
 			float4 tex2DNode67 = tex2D( _SAM, uv_SAM );
 			o.Metallic = tex2DNode67.b;

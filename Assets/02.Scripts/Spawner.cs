@@ -28,10 +28,23 @@ public class Spawner : MonoBehaviour
                 pos.y = 0.0f;
             }
 
-            var go = Instantiate(monster_Prefab, pos, Quaternion.identity);
+            var goObj = Base_Manager.Pool.Pooling_OBJ("Monster").Get((value) =>
+            {
+                value.GetComponent<Monster>().Init();
+                value.transform.position = pos;
+                value.transform.LookAt(Vector3.zero);
+            });
+
+            StartCoroutine(ReturnCoroutine(goObj));
         }
 
         yield return new WaitForSeconds(m_SpawnTime);
         StartCoroutine(SpawnCoroutine());
+    }
+
+    IEnumerator ReturnCoroutine(GameObject obj)
+    {
+        yield return new WaitForSeconds(3.0f);
+        Base_Manager.Pool.m_pool_Dictionary["Monster"].Return(obj);
     }
 }

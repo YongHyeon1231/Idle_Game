@@ -11,9 +11,13 @@ public class Monster : MonoBehaviour
     static readonly int hashMove  = Animator.StringToHash("isMOVE");
     static readonly int hashSpawn = Animator.StringToHash("isSPAWN");
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public void Init()
+    {
         StartCoroutine(SpawnRoutine());
     }
 

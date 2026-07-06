@@ -1,20 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : Character
 {
     public float m_Speed;
-    Animator animator;
+
     bool isSpawn = true;
-
-    static readonly int hashIdle  = Animator.StringToHash("isIDLE");
-    static readonly int hashMove  = Animator.StringToHash("isMOVE");
-    static readonly int hashSpawn = Animator.StringToHash("isSPAWN");
-
-    void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     public void Init()
     {
@@ -29,11 +20,11 @@ public class Monster : MonoBehaviour
 
         float targetDistance = Vector3.Distance(transform.position, Vector3.zero);
         if (targetDistance <= 0.9f)
-            AnimatorChange(hashIdle);
+            AnimatorChange(Define.Character.hashIdle);
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, Time.deltaTime * m_Speed);
-            AnimatorChange(hashMove);
+            AnimatorChange(Define.Character.hashMove);
         }
     }
 
@@ -43,7 +34,7 @@ public class Monster : MonoBehaviour
         transform.localScale = Vector3.zero;
         transform.LookAt(Vector3.zero);
 
-        animator.SetTrigger(hashSpawn);
+        AnimatorTriggerChange(Define.Character.hashSpawn);
 
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Spawn"));
 
@@ -59,11 +50,5 @@ public class Monster : MonoBehaviour
         isSpawn = false;
     }
 
-    private void AnimatorChange(int hash)
-    {
-        animator.SetBool(hashIdle, false);
-        animator.SetBool(hashMove, false);
-
-        animator.SetBool(hash, true);
-    }
+    
 }

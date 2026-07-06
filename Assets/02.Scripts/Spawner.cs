@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject monster_Prefab;
-
     public int m_Count; // 몬스터의 수
     public float m_SpawnTime; // 몇 초 마다
 
@@ -34,17 +32,9 @@ public class Spawner : MonoBehaviour
                 value.transform.position = pos;
                 value.transform.LookAt(Vector3.zero);
             });
-
-            StartCoroutine(ReturnCoroutine(goObj));
         }
 
         yield return new WaitForSeconds(m_SpawnTime);
         StartCoroutine(SpawnCoroutine());
-    }
-
-    IEnumerator ReturnCoroutine(GameObject obj)
-    {
-        yield return new WaitForSeconds(3.0f);
-        Base_Manager.Pool.m_pool_Dictionary["Monster"].Return(obj);
     }
 }

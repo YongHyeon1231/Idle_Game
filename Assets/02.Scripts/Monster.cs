@@ -7,6 +7,11 @@ public class Monster : Character
 
     bool isSpawn = true;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     public void Init()
     {
         StartCoroutine(SpawnRoutine());

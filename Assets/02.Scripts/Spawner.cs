@@ -1,10 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     public int m_Count; // 몬스터의 수
     public float m_SpawnTime; // 몇 초 마다
+
+    public static List<Monster> m_Monsters = new List<Monster>();
+    public static List<Player> m_Players = new List<Player>();
 
     void Start()
     {
@@ -31,6 +35,7 @@ public class Spawner : MonoBehaviour
                 value.GetComponent<Monster>().Init();
                 value.transform.position = pos;
                 value.transform.LookAt(Vector3.zero);
+                m_Monsters.Add(value.GetComponent<Monster>());
             });
         }
 

@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     public double HP;
     public double ATK;
     public float ATK_Speed;
+    public bool isDead = false;
 
     protected float Attack_Range = 5.0f; // 공격하는 공격 범위
     protected float target_Range = 10.0f; // 추격하는 범위
@@ -55,6 +56,8 @@ public class Character : MonoBehaviour
 
     protected virtual void ProjectileAttack()
     {
+        if (m_Target == null) return;
+        
         Base_Manager.Pool.Pooling_OBJ("Projectile").Get((value) =>
         {
             value.transform.position = m_ProjectilePos.position;

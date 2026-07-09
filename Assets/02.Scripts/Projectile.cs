@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float m_Speed;
     Transform m_Target;
     Vector3 m_TargetPos;
-    double m_DMG;
+    double m_DMG = 10.0f;
     string m_CharacterName;
     bool GetHit = false;
 
@@ -56,7 +56,9 @@ public class Projectile : MonoBehaviour
             if(m_Target != null)
             {
                 GetHit = true;
-                m_Target.GetComponent<Character>().HP -= m_DMG;
+
+                m_Target.GetComponent<Monster>().GetDamage(m_DMG);
+
                 m_Projectiles[m_CharacterName].gameObject.SetActive(false);
                 m_Particles[m_CharacterName].Play();
 

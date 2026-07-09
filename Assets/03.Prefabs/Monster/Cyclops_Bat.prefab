@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 6132847624668171868}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28887, y: -0, z: 8}
+  m_LocalPosition: {x: 1.80084, y: 3.18569, z: -1.52205}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -229,6 +229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8543c9c495930e64c89076b351a99766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Monster
+  HP: 0
+  ATK: 0
+  ATK_Speed: 0
+  m_ProjectilePos: {fileID: 0}
   m_Speed: 0.8
 --- !u!1 &6768249978633322677
 GameObject:

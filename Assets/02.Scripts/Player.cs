@@ -15,10 +15,10 @@ public class Player : Character
 
     void Update()
     {
+        FindClosetTarget(Spawner.m_Monsters.ToArray());
+        
         if(m_Target == null)
         {
-            FindClosetTarget(Spawner.m_Monsters.ToArray());
-
             float targetPos = Vector3.Distance(transform.position, startPos);
             if(targetPos > 0.1f)
             {
@@ -32,6 +32,11 @@ public class Player : Character
                 AnimatorChange(Define.Character.hashIdle);
             }
             return;
+        }
+
+        if(m_Target.GetComponent<Character>().isDead)
+        {
+            FindClosetTarget(Spawner.m_Monsters.ToArray());
         }
 
         float targetDistance = Vector3.Distance(transform.position, m_Target.position);

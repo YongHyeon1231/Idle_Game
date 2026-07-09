@@ -10,5 +10,7 @@ public static class Define
         public static readonly int hashATK01 = Animator.StringToHash("isATK01");
         public static readonly int hashATK02 = Animator.StringToHash("isATK02");
         public static readonly int hashATK03 = Animator.StringToHash("isATK03");
+        public static readonly int hashDie = Animator.StringToHash("isDIE");
+        public static readonly int hashHit = Animator.StringToHash("isHIT");
     }
 }

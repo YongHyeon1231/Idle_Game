@@ -9,8 +9,8 @@ public class Character : MonoBehaviour
     public double ATK;
     public float ATK_Speed;
 
-    protected float Attack_Range = 3.0f; // 공격하는 공격 범위
-    protected float target_Range = 5.0f; // 추격하는 범위
+    protected float Attack_Range = 5.0f; // 공격하는 공격 범위
+    protected float target_Range = 10.0f; // 추격하는 범위
     protected bool isAttack = false;
     protected Transform m_Target;
 
@@ -58,6 +58,7 @@ public class Character : MonoBehaviour
         Base_Manager.Pool.Pooling_OBJ("Projectile").Get((value) =>
         {
             value.transform.position = m_ProjectilePos.position;
+            value.GetComponent<Projectile>().Init(m_Target, ATK, "CH_01_01");
         });
     }
 

@@ -34,7 +34,8 @@ public class Object_Pool : IPool
     public void Return(GameObject obj, Action<GameObject> action = null)
     {
         pool.Enqueue(obj);
-        obj.transform.parent = parentTransform;
+        // obj.transform.parent = parentTransform;
+        obj.transform.SetParent(parentTransform, false);
         obj.SetActive(false);
         if (action != null)
         {
@@ -85,7 +86,8 @@ public class Pool_Manager
     {
         // var go = Instantiate(Resources.Load<GameObject>(path)); // Pool_Manager에서 Instantiate를 사용하면, Pool_Manager가 Resources에 의존하게 된다. 따라서, Pool_Manager는 Resources에 의존하지 않도록 수정해야 한다.
         var go = Base_Manager.instance.Instantiate_Path(path);
-        go.transform.parent = m_pool_Dictionary[path].parentTransform;
+        // go.transform.parent = m_pool_Dictionary[path].parentTransform;
+        go.transform.SetParent(m_pool_Dictionary[path].parentTransform, false);
 
         m_pool_Dictionary[path].Return(go);
     }

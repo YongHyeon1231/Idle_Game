@@ -16,4 +16,11 @@ public class Base_Canvas : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public Transform COIN;
+    [SerializeField] private Transform LAYER;
+
+    public Transform HOLDER_LAYER(int value)
+    {
+        return LAYER.GetChild(value);
+    }
 }

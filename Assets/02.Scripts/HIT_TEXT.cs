@@ -23,7 +23,8 @@ public class HIT_TEXT : MonoBehaviour
         target = pos;
         m_Text.text = dmg.ToString();
         // transform.parent = Base_Canvas.instance.transform;
-        transform.SetParent(Base_Canvas.instance.transform, false);
+        // transform.SetParent(Base_Canvas.instance.transform, false);
+        transform.SetParent(Base_Canvas.instance.HOLDER_LAYER(1));
 
         m_Critical.SetActive(Critical);
 

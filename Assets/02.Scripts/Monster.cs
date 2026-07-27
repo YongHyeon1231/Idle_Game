@@ -80,8 +80,16 @@ public class Monster : Character
 
             Base_Manager.Pool.Pooling_OBJ("COIN_PARENT").Get((value) =>
             {
-               value. GetComponent<COIN_PARENT>().Init(transform.position);
+               value.GetComponent<COIN_PARENT>().Init(transform.position);
             });
+
+            for (int i = 0; i < 3; i++)
+            {
+                Base_Manager.Pool.Pooling_OBJ("Item_OBJ").Get((value) =>
+                {
+                    value.GetComponent<Item_OBJ>().Init(transform.position);
+                });
+            }
 
             Base_Manager.Pool.m_pool_Dictionary["Monster"].Return(this.gameObject);
         }
